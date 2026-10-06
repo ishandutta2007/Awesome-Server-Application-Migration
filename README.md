@@ -63,7 +63,7 @@ The table below lists leading commercial SaaS and hosted migration solutions, **
 
 ## 🔓 Open-Source GitHub Migration Tools
 
-Open-source migration engines empower organizations to achieve **cloud sovereignty**, avoid vendor lock-in, and customize V2V/P2V conversions. Below is a curated list of top open-source projects, **sorted by GitHub star count (descending)**:
+Open-source migration engines empower organizations to achieve **cloud sovereignty**, avoid vendor lock-in, and customize V2V/P2V conversions. Below is a curated list of top open-source projects, **sorted by GitHub Stars_Count (descending)**:
 
 ### Core Infrastructure & Automation
 
