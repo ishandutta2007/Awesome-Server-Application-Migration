@@ -1,283 +1,203 @@
-# Awesome-Server-Application-Migration
-
-## Top Server & Application Migration Ecosystem
-
-
-
-**Curated List of SaaS Products & Open-Source GitHub Projects**  
-
-*Focused on Workload Migration, Disaster Recovery & Open-Source Data Mobility*  
-
-**Last updated: October 2026**
-
-
-
-This repository tracks notable **commercial server and application migration platforms** and **open-source projects** that move workloads between physical servers, virtual machines, and cloud environments. These tools range from continuous replication engines to agentless discovery and cutover orchestration.
-
-
-
-**Examples** include AWS Application Migration Service, Azure Site Recovery, Google Cloud Migrate to Virtual Machines, Carbonite Migrate, Zerto, Veeam, CloudEndure, PlateSpin Migrate, Cohesity, and Commvault (the category leaders).
-
-
-
-**Open-source emphasis**: Server and application migration is anchored by **virt-v2v** as the foundational V2V conversion tool, **Coriolis** for cloud migration as a service, **h2kvm** for VDDK-free VMware migration, **Migration Manager** for VMware-to-Incus, and **hyper2kvm** for enterprise-scale migration with Kubernetes operator. **Reloader** and **Transiva** handle disk export. This section is heavily expanded.
-
-
-
-Contributions welcome! Open a PR to add/update entries. Keep descriptions factual and link to official sites.
-
-
-
-## Table of Contents
-
-- [SaaS/Hosted Platforms](#saas-hosted-platforms)
-
-- [Open-Source GitHub Projects](#open-source-github-projects)
-
-- [How to Contribute](#how-to-contribute)
-
-- [Disclaimer](#disclaimer)
-
-
-
-## SaaS/Hosted Platforms
-
-
-
-- **[AWS Application Migration Service](https://aws.amazon.com/application-migration-service/)**  
-
-  **AWS's primary migration service** — lift-and-shift physical, virtual, or cloud servers to AWS . **Continuous block-level replication** with minimal downtime . **The reference for AWS migrations** . **Best for AWS cloud migration** .
-
-
-
-- **[Azure Site Recovery](https://azure.microsoft.com/en-us/products/site-recovery/)**  
-
-  **Microsoft's disaster recovery and migration service** — replicate and migrate VMs to Azure . **Best for Azure migrations** .
-
-
-
-- **[Google Cloud Migrate to Virtual Machines](https://cloud.google.com/migrate/virtual-machines)**  
-
-  **Google's VM migration service** — migrate from VMware, AWS, and Azure to GCP . **Best for GCP migrations** .
-
-
-
-- **[Carbonite Migrate](https://www.carbonite.com/migrate/)**  
-
-  **Real-time replication and migration** — minimal downtime cutover . **Best for heterogeneous migrations** .
-
-
-
-- **[Zerto](https://www.zerto.com/)**  
-
-  **The enterprise standard for IT resilience and migration** — continuous replication and automated failover . **Best for enterprise DR and migration** .
-
-
-
-- **[Veeam](https://www.veeam.com/)**  
-
-  **Backup and replication platform with migration capabilities** . **Best for VMware and Hyper-V migrations** .
-
-
-
-- **[CloudEndure](https://www.cloudendure.com/)**  
-
-  **AWS's disaster recovery and migration service** — continuous block-level replication . **Best for live migration** .
-
-
-
-- **[PlateSpin Migrate](https://www.microfocus.com/en-us/products/platespin-migrate/overview)**  
-
-  **Micro Focus's workload migration** — physical, virtual, and cloud migrations . **Best for heterogeneous environments** .
-
-
-
-- **[Cohesity](https://www.cohesity.com/)**  
-
-  **Data management with migration capabilities** — backup, recovery, and cloud migration . **Best for data-centric migration** .
-
-
-
-- **[Commvault](https://www.commvault.com/)**  
-
-  **Enterprise data management with migration** — backup, recovery, and cloud migration . **Best for enterprise data management** .
-
-
-
-## Open-Source GitHub Projects
-
-
-
-### Core V2V & Migration Tools
-
-
-
-- **[virt-v2v](https://github.com/libguestfs/virt-v2v)**  
-
-  **The foundational open-source V2V conversion tool**, GPL-2.0 licensed . **Converts guests from VMware, Xen, Hyper-V, and other hypervisors to run on KVM** . **Modifies guests to make them bootable on KVM and installs virtio drivers** for performance . **Continuously developed since 2007** — the reference implementation for guest conversion . **Companion tool virt-p2v** virtualizes physical machines . **Trade-off**: VDDK public downloads ended September 2026 — migration tools must use alternative transport paths . **Best for direct V2V conversion to KVM** .
-
-
-
-- **[h2kvm](https://github.com/zyvorai/h2kvm)**  
-
-  **Any hypervisor → KVM migration toolchain**, open-source . **No VDDK dependency** — disks leave through vSphere API and NFS, then convert offline . **Offline guest fixes for VirtIO, GRUB, and Windows bootloader before power-on** . **Includes GuestKit** for disk inspection before boot, **Zorvia** for KubeVirt VM management, **Zeus OS** for visual infrastructure, and **Machina** as libvirt control plane . **PyPI package**: `pip install "h2kvm==1.2.1"` . **Best for VDDK-free VMware migration** .
-
-
-
-- **[Coriolis](https://github.com/cloudbase/coriolis)**  
-
-  **Cloud Migration as a Service platform**, Apache-2.0 licensed . **Migrates VMs, templates, storage, and networking between clouds** — VMware vSphere, SCVMM, Azure, AWS, OpenStack, and GCP . **Automatically injects drivers and tools** — cloud-init/cloudbase-init for OpenStack, LIS kernel modules for Hyper-V and Azure . **Uses Oslo libraries with OpenStack-style architecture** — stateless microservices, queues, and scalability . **API-driven** with Postman collection available . **Best for cloud-to-cloud and on-prem-to-cloud migrations** .
-
-
-
-- **[Migration Manager (FuturFusion)](https://github.com/FuturFusion/migration-manager)**  
-
-  **Modern instance migration tool for VMware → Incus**, Apache-2.0 licensed . **Runs as a service with REST API, CLI, and web interface** . **Add sources (vCenter/ESXi) and targets (Incus clusters), query instances, override VM sizing, define batches, and track migrations in background** . **v0.6.15** (August 2026) with active development . **Best for VMware-to-Incus migrations** .
-
-
-
-- **[hyper2kvm](https://github.com/ssahani/hyper2kvm)**  
-
-  **Enterprise-grade VM migration toolkit**, LGPL-3.0 licensed . **Production-ready v1.0.0** with 96.8% success rate and 2-3x faster than traditional tools . **Kubernetes Operator (v1.6.0)** with Helm chart, admission webhooks, and 20+ Prometheus metrics . **480+ VMCraft API methods** with 90%+ test coverage . **Includes GuestKit** — pure-Rust VM disk inspection with AI-powered diagnostics for pre-migration validation . **Best for enterprise-scale migration with Kubernetes orchestration** .
-
-
-
-### Disk Export & Conversion
-
-
-
-- **[Reloader](https://github.com/farodin/reloader)**  
-
-  **NFC-based VMware disk export without VDDK**, open-source . **Exports VMDK disks from ESXi hosts** . **Best for VDDK-free disk export** .
-
-
-
-- **[Transiva](https://github.com/marazmiki/transiva)**  
-
-  **NFC-based VMware disk export**, open-source . **Alternative to VDDK for disk transfer** . **Best for VDDK-free migration** .
-
-
-
-- **[GuestKit](https://github.com/ssahani/guestkit)**  
-
-  **Pure-Rust VM disk inspection with AI-powered diagnostics**, open-source . **Inspects disks before migration** — detects OS, drivers, and boot issues . **Best for pre-migration validation** .
-
-
-
-- **[libguestfs](https://github.com/libguestfs/libguestfs)**  
-
-  **Library for accessing and modifying VM disk images**, GPL-2.0 licensed . **The foundation for virt-v2v and other migration tools** . **Best for disk image manipulation** .
-
-
-
-### Cloud Migration Frameworks
-
-
-
-- **[OpenNebula OneSwap](https://github.com/OpenNebula/one-swap)**  
-
-  **Migrate VMware workloads to OpenNebula/KVM**, open-source . **In-place conversion on datastore** — no local copy, terabyte disks work on workers with small local storage . **Runs virt-v2v-in-place to install virtio drivers and fix initramfs/bootloader** . **Best for OpenNebula migrations** .
-
-
-
-- **[EuroMigrator Engine](https://hub.docker.com/r/euromigrator/engine)**  
-
-  **Enterprise cloud migration to sovereign EU providers**, open-source . **47 cloud services across 7 providers** — AWS, Azure, GCP to European alternatives . **AI-powered migration planning and risk assessment** . **GDPR compliant** with encryption at rest and transit . **Best for EU data sovereignty migrations** .
-
-
-
-- **[xmigrate](https://hub.docker.com/r/xmigrate/xmigrate)**  
-
-  **Open-source infrastructure migration tool**, CC BY-NC-ND 4.0 licensed . **DC to DC, DC to cloud, cloud to DC, and cloud to cloud** VM migration . **Agentless discovery and migration** to AWS, GCP, and Azure . **Best for simple cloud migrations** .
-
-
-
-### Live Migration & Hypervisor
-
-
-
-- **[Libvirt/QEMU Live Migration](https://ubuntu.com/server/docs/explanation/virtualisation/live-migration/)**  
-
-  **The foundational open-source live migration capability** . **QEMU streams VM memory and CPU state; libvirt coordinates** the handoff between hosts . **Versioned machine types and CPU baselines** enable migration across heterogeneous infrastructure . **Best for KVM-to-KVM live migration** .
-
-
-
-- **[oVirt](https://github.com/oVirt/ovirt-engine)** — Open-source virtualization management with migration capabilities  .
-
-- **[Proxmox VE](https://github.com/proxmox/pve-manager)** — Built-in migration for VMs and containers .
-
-- **[Harvester](https://github.com/harvester/harvester)** — HCI with VM migration support  .
-
-- **[OpenStack Nova](https://github.com/openstack/nova)** — Live migration with parallel memory transfer (Gazpacho 2026.1) and vTPM support  .
-
-
-
-### Additional Strong Open-Source Options
-
-
-
-- **virt-p2v** — Companion tool for physical-to-virtual migration .
-
-- **virt-v2v-in-place** — In-place conversion for existing VMs .
-
-- **KubeVirt** — VM management on Kubernetes with migration capabilities .
-
-- **oVirt** — Open-source virtualization management .
-
-- **OpenStack** — Cloud infrastructure with migration .
-
-- **CloudStack** — Cloud platform with migration .
-
-- **Terraform** — Infrastructure as Code for target environment provisioning .
-
-- **Ansible** — Configuration management for post-migration setup .
-
-
-
-**Frameworks for building custom server and application migration solutions**: Combine **virt-v2v** as the foundational conversion engine . Use **h2kvm** for VDDK-free migration with offline guest repair . Deploy **Coriolis** for cloud-to-cloud and on-prem-to-cloud migrations with driver injection . Choose **Migration Manager** for VMware-to-Incus with modern web interface . Use **hyper2kvm** for enterprise-scale migration with Kubernetes operator . Integrate **GuestKit** for pre-migration disk inspection . Note that true enterprise migration with continuous replication, automated failover, and vendor-supported SLAs (Zerto, Veeam, AWS MGN) remains primarily commercial territory; open-source stacks provide strong conversion, cloud migration, and live migration foundations that require integration for complete enterprise deployment.
-
-
-
-## How to Contribute
-
-
-
-1. Fork the repo.
-
-2. Add/edit entries in `README.md` (follow existing format).
-
-3. Include: name, link, 1–2 sentence description, and whether it's SaaS or open-source.
-
-4. Submit PR with a short explanation.
-
-
-
-Star the repo if you find it useful!
-
-
-
-## Disclaimer
-
-
-
-- This is a **community-curated** list — not exhaustive and not an endorsement.
-
-- Server and application migration involves moving critical workloads and data. **Test migrations in isolated environments first** — driver issues, bootloader problems, and driver signing failures can cause boot loops .
-
-- **VDDK public downloads ended September 2026** — tools relying on VMware's Virtual Disk Development Kit must use alternative transport paths (NFS, HTTPS) .
-
-- **Windows Server 2025 migration requires specific configurations** — UEFI/q35 machine type and CPU passthrough are required for successful boot . Virtio driver signing issues can cause reboot loops .
-
-- **Open-source migration tools require operational expertise** — disk conversion, driver injection, and cutover orchestration are complex. Plan for testing and rollback capabilities.
-
-- The open-source ecosystem provides strong conversion, cloud migration, and live migration foundations, but **continuous replication, automated failover, and vendor-supported SLAs** remain primarily commercial offerings.
-
-
+<p align="center">
+  <img src="assets/banner.svg" alt="Awesome Server & Application Migration Banner" width="100%"/>
+</p>
+
+<p align="center">
+  <a href="https://github.com/ishandutta2007/Awesome-Awesome-Awesome"><img src="https://img.shields.io/badge/Awesome-%E2%9C%94-blueviolet?style=flat-square&logo=github" alt="Awesome"/></a><a href="https://discord.gg/jc4xtF58Ve"><img src="https://img.shields.io/badge/Discord-5865F2?style=for-the-badge&logo=discord&logoColor=white" alt="Discord" /></a>
+  <a href="https://github.com/ishandutta2007/Awesome-Server-Application-Migration/stargazers"><img src="https://img.shields.io/github/stars/ishandutta2007/Awesome-Server-Application-Migration?style=flat-square&color=gold" alt="Stars"/></a>
+  <a href="https://github.com/ishandutta2007/Awesome-Server-Application-Migration/network/members"><img src="https://img.shields.io/github/forks/ishandutta2007/Awesome-Server-Application-Migration?style=flat-square&color=blue" alt="Forks"/></a>
+  <a href="https://github.com/ishandutta2007/Awesome-Server-Application-Migration/blob/main/LICENSE"><img src="https://img.shields.io/badge/License-MIT-green.svg?style=flat-square" alt="License"/></a>
+  <a href="https://github.com/ishandutta2007/Awesome-Server-Application-Migration/pulls"><img src="https://img.shields.io/badge/PRs-welcome-brightgreen.svg?style=flat-square" alt="PRs Welcome"/></a>
+  <a href="https://github.com/ishandutta2007"><img alt="GitHub followers" src="https://img.shields.io/github/followers/ishandutta2007?label=Follow" /></a>
+</p>
+
+# 🚀 Awesome Server & Application Migration Ecosystem
+
+> **Curated Directory of Enterprise SaaS Migration Platforms & Open-Source Workload Mobility Tools**  
+> *Comprehensive guide covering Physical-to-Virtual (P2V), Virtual-to-Virtual (V2V), Cloud-to-Cloud, Container Migration, Live Disaster Recovery, and Automated Cutover Orchestration.*
 
 ---
 
+## 📌 Executive Overview & SEO Guide
 
+Modern server and application migration requires robust tools for seamless **lift-and-shift**, **block-level continuous replication**, and **hypervisor guest driver injection**. Whether transitioning off legacy VMware vSphere, migrating physical workloads to AWS/Azure/GCP, or adopting cloud-native Kubernetes infrastructure, choosing the right toolchain is critical to minimize downtime and risk.
 
-**Made for infrastructure architects, cloud engineers, and organizations seeking migration sovereignty.**  
+This repository tracks **enterprise commercial SaaS platforms** and **open-source Github projects** organized by capabilities, pricing, company market presence, and community popularity.
 
-Let's make server and application migration more open, transparent, and accessible.
+---
+
+## 📚 Table of Contents
+
+- [🏢 SaaS & Hosted Migration Platforms](#-saas--hosted-migration-platforms)
+- [🔓 Open-Source GitHub Migration Tools](#-open-source-github-migration-tools)
+  - [Core Infrastructure & Automation](#core-infrastructure--automation)
+  - [Cloud-Native & Container Mobility](#cloud-native--container-mobility)
+  - [Hypervisors & HCI Platforms](#hypervisors--hci-platforms)
+  - [Dedicated V2V & Disk Conversion Engine Tools](#dedicated-v2v--disk-conversion-engine-tools)
+- [🛠️ Key Migration Architecture Patterns](#%EF%B8%8F-key-migration-architecture-patterns)
+- [🤝 How to Contribute](#-how-to-contribute)
+- [⚠️ Enterprise Disclaimer](#%EF%B8%8F-enterprise-disclaimer)
+- [⭐ Star History](#-star-history)
+- [💖 Support & Contributing](#-support--contributing)
+
+---
+
+## 🏢 SaaS & Hosted Migration Platforms
+
+> **Market Intelligence**: The global server and application migration market is estimated at **\$15.8 Billion** with a ~21.5% CAGR. The sector is **moderately fragmented**, anchored by hyperscale public cloud providers (Microsoft Azure, AWS, Google Cloud) offering first-party migration services alongside specialized enterprise disaster recovery and continuous replication vendors.
+
+The table below lists leading commercial SaaS and hosted migration solutions, **sorted by parent company size / revenue (descending)**:
+
+| Product / Vendor | Description & Core Migration Capabilities | Specific Starting Tier Pricing | Free Tier / Free Trial Limits | Company Size / Revenue / Valuation |
+| :--- | :--- | :--- | :--- | :--- |
+| **[Azure Site Recovery](https://azure.microsoft.com/en-us/products/site-recovery/)** | **Microsoft's enterprise DR & VM migration service**. Continuous block replication of physical servers, VMware, Hyper-V, and AWS VMs into Azure. | **\$25.00 / instance / month** (to Azure destination); \$54.00/instance/month to customer site. | **First 31 days free** for every protected instance migrated to Azure. | **\$245B+ Annual Revenue** / \$3.1T Market Cap (Microsoft) |
+| **[AWS Application Migration Service](https://aws.amazon.com/application-migration-service/)** | **AWS primary lift-and-shift engine (AWS MGN)**. Non-disruptive, block-level continuous replication for physical, virtual, or cloud servers to AWS EC2. | **\$0.04 / hour / server** (~$28.80/mo) after free tier period. | **First 90 days free** for each server migrated to AWS. | **\$105B+ Annual Revenue** / \$2.1T Market Cap (Amazon AWS) |
+| **[Google Cloud Migrate to Virtual Machines](https://cloud.google.com/migrate/virtual-machines)** | **Google's agentless VM migration engine**. Direct streaming migration of VMware, AWS, Azure workloads into Compute Engine with background sync. | **\$0.00 base tool license** (Standard GCP storage/compute usage fees apply, ~$0.02–$0.08/GB). | **Free migration engine usage** + \$300 free credits over 90 days for new GCP accounts. | **\$33B+ Cloud Annual Revenue** / \$2.0T Market Cap (Alphabet) |
+| **[HPE Zerto](https://www.zerto.com/)** | **Enterprise CDP & migration platform**. Near-zero RPO/RTO continuous data protection and cross-hypervisor migration (VMware, Hyper-V, AWS, Azure). | **\$85.00 / VM / year** (Zerto Enterprise Cloud starting license tier). | **14-day full-feature trial** with protection for up to 10 VMs. | **\$29B Annual Revenue** / \$25B Market Cap (Hewlett Packard Enterprise) |
+| **[Carbonite Migrate / PlateSpin](https://www.carbonite.com/migrate/)** | **Real-time host replication & automated cutover**. Moves physical, virtual, and cloud workloads between any source and target with minimal downtime. | **\$495.00 per server migration license** (one-time migration license per host). | **30-day full functional evaluation trial** per target host. | **\$5.8B Annual Revenue** / \$7.5B Enterprise Valuation (OpenText) |
+| **[Veeam Backup & Replication](https://www.veeam.com/)** | **Backup, recovery & migration ecosystem**. Instant VM Recovery, cross-platform restore to AWS/Azure/GCP, and VMware-to-Hyper-V migration. | **\$180.00 / year** for Veeam Universal License (VUL) 10-pack (~$18/workload/yr). | **Veeam Community Edition free forever** (up to 10 workloads) + 30-day trial. | **\$1.5B Annual Recurring Revenue (ARR)** / \$5.0B Valuation |
+| **[Commvault Cloud Migration](https://www.commvault.com/)** | **Multi-cloud data management & mobility**. Automated workload discovery, porting, and disaster recovery across hybrid cloud environments. | **\$15.00 / VM / month** (Commvault Cloud Data Protection & Mobility tier). | **30-day free trial** supporting up to 100 VMs. | **\$830M Annual Revenue** / \$4.2B Market Cap (Commvault Systems) |
+| **[Cohesity DataCloud Migration](https://www.cohesity.com/)** | **Data security & multi-cloud migration**. Agentless backup, instant recovery, and cloud spin-up for VMware and physical enterprise servers. | **\$90.00 / TB / year** (Cohesity Data Cloud management & migration tier). | **30-day free trial** on Cohesity DataCloud tenant. | **\$500M+ Annual Recurring Revenue (ARR)** / \$1.6B Valuation |
+
+---
+
+## 🔓 Open-Source GitHub Migration Tools
+
+Open-source migration engines empower organizations to achieve **cloud sovereignty**, avoid vendor lock-in, and customize V2V/P2V conversions. Below is a curated list of top open-source projects, **sorted by GitHub star count (descending)**:
+
+### Core Infrastructure & Automation
+
+- **[Ansible](https://github.com/ansible/ansible)** [<img src="https://img.shields.io/github/stars/ansible/ansible?style=social" alt="Stars"/>](https://github.com/ansible/ansible/stargazers)  
+  *Radically simple IT automation engine.* Essential for post-migration server configuration, guest driver injection, network reconfiguration, and automated validation playbooks across target host environments.
+
+- **[Terraform](https://github.com/hashicorp/terraform)** [<img src="https://img.shields.io/github/stars/hashicorp/terraform?style=social" alt="Stars"/>](https://github.com/hashicorp/terraform/stargazers)  
+  *Declarative Infrastructure as Code (IaC).* Standard tool for provisioning target cloud infrastructure (VPCs, subnets, instances, storage volumes) prior to workload migration cutovers.
+
+### Cloud-Native & Container Mobility
+
+- **[Velero](https://github.com/velero-io/velero)** [<img src="https://img.shields.io/github/stars/velero-io/velero?style=social" alt="Stars"/>](https://github.com/velero-io/velero/stargazers)  
+  *Kubernetes backup, disaster recovery, and cluster migration tool.* Safely backs up and restores K8s cluster resources and persistent volume data across Kubernetes clusters and cloud providers.
+
+- **[OpenEBS](https://github.com/openebs/openebs)** [<img src="https://img.shields.io/github/stars/openebs/openebs?style=social" alt="Stars"/>](https://github.com/openebs/openebs/stargazers)  
+  *Leading Container Attached Storage (CAS) for Kubernetes.* Enables persistent volume replication and storage workload mobility across on-premises and multi-cloud Kubernetes deployments.
+
+- **[Longhorn](https://github.com/longhorn/longhorn)** [<img src="https://img.shields.io/github/stars/longhorn/longhorn?style=social" alt="Stars"/>](https://github.com/longhorn/longhorn/stargazers)  
+  *Cloud-native distributed block storage built for Kubernetes.* Provides cross-cluster volume snapshotting, backup, and volume migration capabilities with minimal downtime.
+
+- **[KubeVirt](https://github.com/kubevirt/kubevirt)** [<img src="https://img.shields.io/github/stars/kubevirt/kubevirt?style=social" alt="Stars"/>](https://github.com/kubevirt/kubevirt/stargazers)  
+  *Virtual machine management addon for Kubernetes.* Allows running traditional VM workloads side-by-side with containers inside Kubernetes, supporting live VM migration across worker nodes.
+
+### Hypervisors & HCI Platforms
+
+- **[Harvester](https://github.com/harvester/harvester)** [<img src="https://img.shields.io/github/stars/harvester/harvester?style=social" alt="Stars"/>](https://github.com/harvester/harvester/stargazers)  
+  *Open-source hyperconverged infrastructure (HCI) built on Kubernetes and KubeVirt.* Provides enterprise VM live migration, snapshotting, and image import tools for migrating off legacy VMware setups.
+
+- **[OpenStack Nova](https://github.com/openstack/nova)** [<img src="https://img.shields.io/github/stars/openstack/nova?style=social" alt="Stars"/>](https://github.com/openstack/nova/stargazers)  
+  *Cloud compute fabric controller.* Features high-performance parallel memory live migration, vTPM state transfer, and cold instance migration across multi-node OpenStack clouds.
+
+- **[Apache CloudStack](https://github.com/apache/cloudstack)** [<img src="https://img.shields.io/github/stars/apache/cloudstack?style=social" alt="Stars"/>](https://github.com/apache/cloudstack/stargazers)  
+  *Turnkey open-source Cloud Management Platform.* Supports live VM migration, volume attach/detach mobility, and cross-storage pool migrations across KVM, XenServer, and VMware.
+
+- **[oVirt Engine](https://github.com/oVirt/ovirt-engine)** [<img src="https://img.shields.io/github/stars/oVirt/ovirt-engine?style=social" alt="Stars"/>](https://github.com/oVirt/ovirt-engine/stargazers)  
+  *Open-source virtualization management system.* Manages KVM clusters with automated VM workload live migration, high availability, and storage domain migration.
+
+- **[Proxmox VE Manager](https://github.com/proxmox/pve-manager)** [<img src="https://img.shields.io/github/stars/proxmox/pve-manager?style=social" alt="Stars"/>](https://github.com/proxmox/pve-manager/stargazers)  
+  *Complete open-source enterprise virtualization platform.* Includes built-in zero-downtime live migration for QEMU virtual machines and LXC containers.
+
+### Dedicated V2V & Disk Conversion Engine Tools
+
+- **[libguestfs](https://github.com/libguestfs/libguestfs)** [<img src="https://img.shields.io/github/stars/libguestfs/libguestfs?style=social" alt="Stars"/>](https://github.com/libguestfs/libguestfs/stargazers)  
+  *The core C library and toolset for accessing and modifying VM disk images.* Provides low-level disk inspection, partition resizing, and guest file modification used by virt-v2v.
+
+- **[virt-v2v](https://github.com/libguestfs/virt-v2v)** [<img src="https://img.shields.io/github/stars/libguestfs/virt-v2v?style=social" alt="Stars"/>](https://github.com/libguestfs/virt-v2v/stargazers)  
+  *The foundational open-source V2V conversion tool.* Converts guest VMs from VMware vSphere, Xen, and Hyper-V to run on KVM, automatically injecting VirtIO drivers and fixing bootloaders.
+
+- **[Coriolis](https://github.com/cloudbase/coriolis)** [<img src="https://img.shields.io/github/stars/cloudbase/coriolis?style=social" alt="Stars"/>](https://github.com/cloudbase/coriolis/stargazers)  
+  *Cloud Migration as a Service platform by Cloudbase Solutions.* Automates migration of VMs, disks, and networking between VMware, AWS, Azure, OpenStack, and GCP with automatic cloud-init injection.
+
+- **[Migration Manager (FuturFusion)](https://github.com/FuturFusion/migration-manager)** [<img src="https://img.shields.io/github/stars/FuturFusion/migration-manager?style=social" alt="Stars"/>](https://github.com/FuturFusion/migration-manager/stargazers)  
+  *Modern instance migration utility for VMware vSphere → Incus.* Features REST API, CLI, and Web UI to discover vCenter VMs, configure batch cutovers, and migrate to Incus containers/VMs.
+
+- **[OpenNebula OneSwap](https://github.com/OpenNebula/one-swap)** [<img src="https://img.shields.io/github/stars/OpenNebula/one-swap?style=social" alt="Stars"/>](https://github.com/OpenNebula/one-swap/stargazers)  
+  *In-place datastore VMware workload migration tool for OpenNebula.* Converts VMware VMDKs directly on datastores to KVM without requiring local disk copies.
+
+- **[h2kvm](https://github.com/zyvorai/h2kvm)** [<img src="https://img.shields.io/github/stars/zyvorai/h2kvm?style=social" alt="Stars"/>](https://github.com/zyvorai/h2kvm/stargazers)  
+  *Any Hypervisor to KVM migration toolchain.* Operates without VMware VDDK dependencies via vSphere API/NFS and applies offline fixes to VirtIO, GRUB, and Windows bootloaders.
+
+- **[hyper2kvm](https://github.com/ssahani/hyper2kvm)** [<img src="https://img.shields.io/github/stars/ssahani/hyper2kvm?style=social" alt="Stars"/>](https://github.com/ssahani/hyper2kvm/stargazers)  
+  *Enterprise-grade VM migration toolkit with Kubernetes Operator.* Designed for large-scale enterprise migrations with Prometheus metrics, Helm charts, and automated guest validation.
+
+- **[GuestKit](https://github.com/ssahani/guestkit)** [<img src="https://img.shields.io/github/stars/ssahani/guestkit?style=social" alt="Stars"/>](https://github.com/ssahani/guestkit/stargazers)  
+  *Pure-Rust VM disk inspection tool.* Provides automated pre-migration diagnostics to detect missing drivers, OS partition errors, and bootloader incompatibilities before cutover.
+
+---
+
+## 🛠️ Key Migration Architecture Patterns
+
+When executing server and application migrations, enterprise teams utilize three primary architectural patterns:
+
+```
+[ Physical / Source VM ] ───► (1. Block Continuous Replication) ───► [ Cloud / Target Staging ]
+                         ───► (2. Guest Driver Injection - VirtIO) ───► [ Final Cutover & Boot ]
+```
+
+1. **Continuous Block-Level Replication (Live Migration)**:  
+   *SaaS options*: AWS MGN, Azure Site Recovery, Zerto.  
+   *Open-source options*: Velero, Longhorn, QEMU/KVM Live Migration.  
+   *Best for*: Mission-critical enterprise production applications where RPO/RTO must be kept in seconds/minutes.
+
+2. **Offline V2V Disk Conversion & Driver Fixup**:  
+   *Tools*: `virt-v2v`, `h2kvm`, `GuestKit`, `OpenNebula OneSwap`.  
+   *Best for*: VMware vSphere to KVM / Proxmox / Harvester migrations where VDDK licenses are unavailable and guest OS bootloader reconfiguration is required.
+
+3. **Cloud-Native Containerization & IaC Provisioning**:  
+   *Tools*: Terraform, Ansible, KubeVirt, Migration Manager.  
+   *Best for*: Replatforming VMs directly onto Kubernetes or modern cloud infrastructure.
+
+---
+
+## 🤝 How to Contribute
+
+We welcome community contributions! To add or update a migration product or open-source tool:
+
+1. Fork this repository.
+2. Update `README.md` following the exact table or bullet format.
+3. For SaaS products: Ensure specific pricing, free tier details, and company revenue/valuation are included.
+4. For Open-Source repos: Ensure the GitHub star social badge is attached with the stargazer link.
+5. Open a Pull Request with a clear summary of your changes.
+
+Check out our curated meta-list at [Awesome-Awesome-Awesome](https://github.com/ishandutta2007/Awesome-Awesome-Awesome).
+
+---
+
+## ⚠️ Enterprise Disclaimer
+
+- This list is **community-curated** for research and educational purposes.
+- Server and application migrations carry inherent operational risks. Always perform test migrations in isolated sandbox environments prior to production cutovers.
+- Pay attention to driver signing (especially on Windows Server 2022/2025) and bootloader configurations (UEFI vs BIOS) during hypervisor conversions.
+
+---
+
+## ⭐ Star History
+
+[![Star History Chart](https://star-history.dera.page/svg?repos=ishandutta2007/Awesome-Server-Application-Migration&type=date&legend=top-left)](https://star-history.dera.page/#ishandutta2007/Awesome-Server-Application-Migration&type=date&legend=top-left)
+
+---
+
+## 💖 Support & Contributing
+
+Thank you for exploring **Awesome Server & Application Migration**! If this repository helped your team plan cloud migrations or infrastructure modernizations, please consider supporting us:
+
+- ⭐ **Star this repository** to help others discover it!
+- 🔀 **Fork and share** with your cloud engineering and DevOps network.
+- ☕ **Sponsor & Buy a Coffee**: Support our ongoing open-source maintenance via [GitHub Sponsors](https://github.com/sponsors/ishandutta2007).
+
+<p align="center">
+  <a href="https://github.com/sponsors/ishandutta2007">
+    <img src="https://img.shields.io/badge/Sponsor-GitHub%20Sponsors-ea4aaa?style=for-the-badge&logo=github-sponsors&logoColor=white" alt="Sponsor on GitHub"/>
+  </a>
+</p>
+
+---
+
+*Made with ❤️ for Cloud Architects, DevOps Engineers, and Infrastructure Specialists worldwide.*
